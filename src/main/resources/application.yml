@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: Practice-MyBatis
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mybatis?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
+    username: root
+    password: 8llow8llowme
+
+mybatis:
+  type-aliases-package: com.study.mybatis.domain.dto, com.study.mybatis.domain.entity
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations:
+    - classpath:mapper/*.xml
+
