@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.mybatis.domain.mapper.PostMapper">
+
+    <!-- sql 관련 코드  -->
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO POST(WRITER_ID, title, content, create_date, modified_date, views)
+        VALUES (#{writerId}, #{title}, #{content}, #{createDate}, #{modifiedDate}, #{views})
+    </insert>
+
+    <select id="findById" resultType="Post">
+        SELECT id, writer_id, title, content, create_date, modified_date, views
+        FROM post
+        WHERE id = #{id}
+    </select>
+
+    <update id="updatePost">
+        UPDATE post
+        SET title = #{updateParam.title},
+            content = #{updateParam.content},
+            modified_date=#{updateParam.modifiedDate}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deletePost">
+        DELETE FROM post
+        WHERE id=#{id}
+    </delete>
+
+    <select id="findAll" resultType="Post">
+        select id, writer_id, title, content, create_date, modified_date, views
+        from post
+        <where>
+            <if test="code=='title' and keyword != null and keyword != ''">
+                LOWER(title) LIKE LOWER(concat('%', #{keyword}, '%'))
+            </if>
+            <if test="code=='content' and keyword != null and keyword != ''">
+                lower(title) like lower(concat('%', #{keyword}, '%'))
+            </if>
+            <if test="code=='titleAndContent' and keyword != null and keyword != ''">
+                lower(title) like lower(concat('%', #{keyword}, '%'))
+                or lower(content) like lower(concat('%', #{keyword}, '%'))
+            </if>
+        </where>
+    </select>
+
+
+</mapper>
