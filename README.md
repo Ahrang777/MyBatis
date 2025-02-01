@@ -1,1 +1,1 @@
-#1 MyBatis 학습
+# MyBatis 학습
