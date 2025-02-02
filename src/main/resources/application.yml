@@ -8,7 +8,7 @@ spring:
     password: 8llow8llowme
 
 mybatis:
-  type-aliases-package: com.study.mybatis.domain.dto, com.study.mybatis.domain.entity
+  type-aliases-package: com.study.mybatis.domain
   configuration:
     map-underscore-to-camel-case: true
   mapper-locations:
